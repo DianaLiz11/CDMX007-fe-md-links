@@ -10,13 +10,13 @@ const validateAbsolute = (pathEntered) => {
 	return new Promise((resolve, reject) => {
 		if (pathEntered != null || pathEntered != undefined) {
 			if(path.isAbsolute(pathEntered)){
-				return resolve(pathEntered);
+				resolve(pathEntered);
 			}else {
-				return resolve(path.resolve(pathEntered));
+				resolve(path.resolve(pathEntered));
 			}
 		} else {
 			let error = new Error('no has ingresado una ruta');
-      return reject(error);
+      reject(error);
 		}
 	});
 }
@@ -27,37 +27,22 @@ const validateDirectory = (pathEntered) => {
 	let promise = new Promise( (resolve, reject) => {
 		fs.stat(pathEntered, function(err, stats) {
 			if (err) {
-				reject(err);
+				reject(new Error('Ocurrion un rror al obtener las estadisticas del directorio'));
 	    }
 	    resolve(stats.isDirectory());
 	 	});
 	});
 	return promise;
-
-	// fs.stat(pathEntered, function(err, stats) {
-	// 	if (err) {
-	// 		return(err);
-	// 	}
-	// 	console.log(pathEntered);
-	// 	console.log(stats);
-	// 	console.log(stats.isDirectory());
-	// 	return(stats.isDirectory());
-	// });
 }
 
 module.exports.validateDirectory = validateDirectory;
 
 const validateFile = (pathEntered) => {
-	// fs.stat(pathEntered, function(err, stats) {
-	// 	if (err) {
-	// 		return(err);
-	// 	}
-	// 	return (stats.isFile());
-	// });
+
 	let promise = new Promise( (resolve, reject) => {
 		fs.stat(pathEntered, function(err, stats) {
 			if (err) {
-				reject(err);
+				reject(new Error('Ocurrion un error al obtener las estadisticas del archivo'));
 	    }
 	    resolve(stats.isFile());
 	 	});
@@ -68,19 +53,11 @@ const validateFile = (pathEntered) => {
 module.exports.validateFile = validateFile;
 
 const readDirectory = (pathEntered, ext) => {
-	// fs.readdir(pathEntered, function(err, files) {
-	// 	if(err) throw err;
-	// 	files.forEach(element => {
-	// 		if(path.extname(element) == ext){
-	// 			const newPath = path.resolve(element);
-	// 			console.log(newPath);
-	// 		}
-	// 	});
-	// });
+
 	let promise = new Promise( (resolve, reject) => {
 		let filesArray = [];
 		fs.readdir(pathEntered, function(err, files) {
-			if(err) reject(err);
+			if(err) reject(new Error('Ocurrio un error al leer el directorio'));
 			files.forEach(element => {
 				if(path.extname(element) == ext){
 					const newPath = path.join(pathEntered, element);
@@ -98,8 +75,8 @@ module.exports.readDirectory = readDirectory;
 const readFiles = (pathEntered) => {
 	return new Promise((resolve, reject) => {
     fs.readFile(pathEntered, 'utf8', (error, data) => {
-      if (error) return reject(error);
-      return resolve(data);
+      if (error) reject(new Error('Ocurrio un error al leer el archivo'));
+      resolve(data);
     });
 	});
 }
@@ -118,7 +95,6 @@ const obtainLinks = (file, pathFile) => {
 		linkObj.file = pathFile.substr(-50,50);
 		linksArray[i] = linkObj;
 	}
-
 	return (linksArray);
 }
 
