@@ -9,7 +9,7 @@ Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información que se quiere compartir.
 
-*mdlinks-dlmp* te permite leer los archivos Markdown e identificar los links que contiene dicho archivo, mediante comandos el usuario puede solicitar ver el listado de links o bien estadísticas del número de links existentes en el archivo o el número de links rotos.
+**mdlinks-dlmp** te permite leer los archivos Markdown e identificar los links que contiene dicho archivo, mediante comandos el usuario puede solicitar ver el listado de links o bien estadísticas del número de links existentes en el archivo o el número de links rotos.
 
 ## Diagrama de flujo
 
@@ -17,7 +17,7 @@ la información que se quiere compartir.
 
 ## Documentación técnica
 
-la librería ofrece la siguiente interfaz:
+La librería ofrece la siguiente interfaz:
 
 #### `md-links <path-to-file> [options]`
 
@@ -36,7 +36,7 @@ la librería ofrece la siguiente interfaz:
 - `text`: Texto que aparece dentro del link.
 - `file`: Ruta del archivo donde se encontró el link.
 
-2. Si pasamos la opción `--validate` o `v`, la librería hace una petición HTTP para
+2. Si pasamos la opción `--validate` o `-v`, la librería hace una petición HTTP para
 averiguar si el link funciona o no. Si el link resulta en una redirección a una
 URL que responde ok, entonces consideraremos el link como ok, mostrando esta respuesta en pantalla.
 
