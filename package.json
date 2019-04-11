@@ -1,6 +1,6 @@
 {
   "name": "mdlinks-dlmp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Herramienta que usa Node.js, que lee y analiza archivos .md para verificar los link que contiene y retornar algunas estadisticas ",
   "main": "index.js",
   "directories": {
