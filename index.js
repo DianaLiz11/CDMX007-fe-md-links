@@ -2,8 +2,7 @@ const parseArgs = require('minimist')
 const mdLinks = require("./md-links.js");
 const validateOptions = require("./validateOptions.js");
 const argv = parseArgs(process.argv.slice(2), {
-  boolean: [ 'validate' ],
-  boolean: [ 'stats' ],
+  boolean: [ 'validate' , 'stats' ],
   alias: { v: 'validate', s: 'stats' }
 });
 
